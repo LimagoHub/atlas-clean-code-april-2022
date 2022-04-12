@@ -2,20 +2,27 @@
 #include "Game.h"
 #include <iostream>
 #include <vector>
-
+#include <string>
 class NimgameImpl: public Game
 {
 	int stones;
-	bool gameover;
+	int move;
+	
+	
 
-	void execute_moves()
+	void execute_moves() // Integration
 	{
 		human_move();
 		computer_move();
 	}
+
+	
+
 	void human_move()
 	{
-		int move;
+		if (is_game_over())
+			return;
+		
 		while(true)
 		{
 			std::cout << "Es gibt " << stones << " Steine. Bitte nehmen Sie 1, 2 oder 3!" << std::endl;
@@ -23,35 +30,52 @@ class NimgameImpl: public Game
 			if (move >= 1 && move <= 3) break;
 			std::cout << "Ungueltiger Zug" << std::endl;
 		}
-		stones -= move;
+		terminate_turn("Du Loser");
 	}
 	void computer_move()
 	{
-		const std::vector<int> moves{ 3,1,1,2 };
-		int move;
-
-		if(stones == 1)
-		{
-			std::cout << "Du hast nur Glueck gehabt." << std::endl;
-			gameover = true;
+		if (is_game_over())
 			return;
-		}
 		
-		if (stones < 1)
-		{
-			std::cout << "Du Loser" << std::endl;
-			gameover = true;
-			return;
-		}
+		const std::vector<int> moves{ 3,1,1,2 };
+		
 
 		move = moves[stones % 4];
 		std::cout << "Computer nimmt " << move << " Steine." << std::endl;
+
+		terminate_turn("Du hast nur Glück gehabt");
+	}
+
+
+	
+
+	void terminate_turn(std::string message)
+	{
+		update_board();
+		write_game_over_message_if_game_is_over(message);
+	}
+	
+	void write_game_over_message_if_game_is_over(std::string message)
+	{
+		if (is_game_over())
+		{
+			std::cout << message << std::endl;
+
+		}
+	}
+	
+	bool is_game_over() const
+	{
+		return stones < 1;
+	}
+	void update_board()
+	{
 		stones -= move;
 	}
 
 public:
 
-	NimgameImpl():stones(23), gameover(false)
+	NimgameImpl():stones(23)
 	{
 	}
 
@@ -59,7 +83,7 @@ public:
 
 	void play() override
 	{
-		while( ! gameover)
+		while( ! is_game_over())
 		{
 			execute_moves();
 		}
