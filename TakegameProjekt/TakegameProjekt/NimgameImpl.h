@@ -1,91 +1,36 @@
 #pragma once
-#include "Game.h"
-#include <iostream>
-#include <vector>
-#include <string>
-class NimgameImpl: public Game
+
+#include "AbstractGame.h"
+#include "ConsolenWriter.h"
+
+
+class NimgameImpl: public AbstractGame<int, int>
 {
-	int stones;
-	int move;
 	
-	
-
-	void execute_moves() // Integration
+protected:
+	bool is_game_over() const override
 	{
-		human_move();
-		computer_move();
+		return get_board() < 1  || get_players().empty();
 	}
-
-	
-
-	void human_move()
+	void update_board()  override
 	{
-		if (is_game_over())
-			return;
-		
-		while(true)
-		{
-			std::cout << "Es gibt " << stones << " Steine. Bitte nehmen Sie 1, 2 oder 3!" << std::endl;
-			std::cin >> move;
-			if (move >= 1 && move <= 3) break;
-			std::cout << "Ungueltiger Zug" << std::endl;
-		}
-		terminate_turn("Du Loser");
+		set_board(get_board() - get_move());
 	}
-	void computer_move()
+	bool is_move_valid() const  override
 	{
-		if (is_game_over())
-			return;
-		
-		const std::vector<int> moves{ 3,1,1,2 };
-		
-
-		move = moves[stones % 4];
-		std::cout << "Computer nimmt " << move << " Steine." << std::endl;
-
-		terminate_turn("Du hast nur Glück gehabt");
-	}
-
-
-	
-
-	void terminate_turn(std::string message)
-	{
-		update_board();
-		write_game_over_message_if_game_is_over(message);
-	}
-	
-	void write_game_over_message_if_game_is_over(std::string message)
-	{
-		if (is_game_over())
-		{
-			std::cout << message << std::endl;
-
-		}
-	}
-	
-	bool is_game_over() const
-	{
-		return stones < 1;
-	}
-	void update_board()
-	{
-		stones -= move;
+		return get_move() >= 1 && get_move() <= 3;
 	}
 
 public:
 
-	NimgameImpl():stones(23)
+
+	NimgameImpl(Writer& writer)
+		: AbstractGame<int, int>(writer)
 	{
+		set_board(23);
 	}
 
+	
 
-
-	void play() override
-	{
-		while( ! is_game_over())
-		{
-			execute_moves();
-		}
-	}
+	
 };

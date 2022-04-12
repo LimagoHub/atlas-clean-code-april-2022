@@ -19,12 +19,18 @@
     <Filter Include="games\Nimgame">
       <UniqueIdentifier>{3729f904-81d6-456c-8122-b337999428af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="games\Nimgame\nimgameplayer">
+      <UniqueIdentifier>{f13196b5-1dd7-4186-8e61-a631011f6c48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="games\gameplayer">
+      <UniqueIdentifier>{7290ee5d-be6d-47f4-9dfb-d2277868a605}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="writer">
+      <UniqueIdentifier>{bd699c39-9b42-4304-a28c-f3bf5e0d98c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TakegameProjekt.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="GameClient.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -37,6 +43,30 @@
     </ClInclude>
     <ClInclude Include="NimgameImpl.h">
       <Filter>games\Nimgame</Filter>
+    </ClInclude>
+    <ClInclude Include="HumanPlayer.h">
+      <Filter>games\Nimgame\nimgameplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractNimgamePlayer.h">
+      <Filter>games\Nimgame\nimgameplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePlayer.h">
+      <Filter>games\gameplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractGamePlayer.h">
+      <Filter>games\gameplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="ComputerPlayer.h">
+      <Filter>games\Nimgame\nimgameplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractGame.h">
+      <Filter>games</Filter>
+    </ClInclude>
+    <ClInclude Include="Writer.h">
+      <Filter>writer</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsolenWriter.h">
+      <Filter>writer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
