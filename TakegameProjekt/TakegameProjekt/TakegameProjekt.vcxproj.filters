@@ -33,6 +33,9 @@
     <ClCompile Include="TakegameProjekt.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Person.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -67,6 +70,9 @@
     </ClInclude>
     <ClInclude Include="ConsolenWriter.h">
       <Filter>writer</Filter>
+    </ClInclude>
+    <ClInclude Include="Person.h">
+      <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -25,6 +25,12 @@ private:
 			execute_move_for(player);
 		
 	}
+
+	/// <summary>
+	///
+	/// 
+	/// </summary>
+	/// <param name="player"></param>
 	void execute_move_for(GamePlayer<BOARD, MOVE>* player)
 	{
 		if (is_game_over()) return;
@@ -131,6 +137,7 @@ public:
 		players.push_back(player);
 	}
 
+		
 	void play() override
 	{
 		while (!is_game_over())
